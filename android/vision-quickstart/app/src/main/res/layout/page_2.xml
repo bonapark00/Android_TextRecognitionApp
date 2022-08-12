@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="60dp"
+        android:textSize = "30dp"
+        android:text="Privacy Policy"
+        android:textColor="@color/gray" />
+
+
+    <ImageView
+        android:contentDescription="Text Recognizer App"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+
+        android:background="@color/background"
+        app:srcCompat="@drawable/icons8_privacy_96"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="60dp"
+        android:text="Privacy is our priority. This app uses your runtime permissions request to store your notes."
+        android:textColor="@color/gray" />
+
+    <Button
+        android:id="@+id/SecondPage_to_ThirdPage_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/opensans_bold"
+        android:text="Confirm"
+        android:layout_marginVertical="30sp"
+/>
+
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@color/background">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Users and Bystanders"
+        android:textSize="25dp"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:layout_marginVertical="30dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar"
+        android:layout_marginVertical="10dp"
+
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="
+            Other users can be exposed to privacy issues of camera sensing, \
+especially always-on sensing. It is \
+important to be aware and in need inform other users."
+        android:textColor="@color/gray"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:layout_marginVertical="30dp"
+
+        />
+
+    <Button
+        android:id="@+id/button_Third_to_FourthPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="More information"
+        android:layout_marginVertical="30dp"
+        android:fontFamily="@font/opensans_bold"
+        />
+
+    <Button
+        android:id="@+id/button_Third_to_FourthPage_Skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skip This Step"
+        android:layout_marginVertical="10dp"
+        android:fontFamily="@font/opensans_bold"
+        />
+</LinearLayout>

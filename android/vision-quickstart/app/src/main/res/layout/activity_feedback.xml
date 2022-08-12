@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/background"
+    >
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="Feedback"
+        android:textColor="@color/gray"
+        android:textSize="40dp" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/feedback_icon"
+        android:layout_marginBottom="80dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="
+Do you want to send a feedback regarding word,
+"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/opensans_bold"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        />
+
+
+
+    <TextView
+        android:id="@+id/textView_detectedWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20dp"
+        android:fontFamily="@font/opensans_bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+          />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\?"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/opensans_bold"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/button_feedback_0"
+        android:layout_marginTop="70dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="Recognition error" />
+
+    <Button
+        android:id="@+id/button_feedback_1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="Latency error" />
+
+    <Button
+        android:id="@+id/button_feedback_2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="etc" />
+
+
+</LinearLayout>

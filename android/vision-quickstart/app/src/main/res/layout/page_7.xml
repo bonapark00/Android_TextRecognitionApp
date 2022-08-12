@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@color/background" >
+
+
+
+<TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=
+            "Nice, we're almost done. It is \n
+important to check our notes from time to time.\n\n
+3. Make sure to check in-between\n
+the displayed summaries.
+"
+        android:fontFamily="@font/opensans_bold"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        android:layout_marginVertical="30dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar"
+        android:layout_marginVertical="10dp"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/button_Third_to_FourthPage_Skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Okay"
+        android:layout_marginVertical="10dp"
+        android:fontFamily="@font/opensans_bold"
+        />
+</LinearLayout>
