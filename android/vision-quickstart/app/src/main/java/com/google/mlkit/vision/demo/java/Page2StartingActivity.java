@@ -11,7 +11,7 @@ import com.google.mlkit.vision.demo.R;
 
 public final class Page2StartingActivity extends AppCompatActivity
 {
-
+    // 2-> curently HANDTEST -> 3
     private static final String TAG = "SecondPageStartingActivity";
 
     @Override

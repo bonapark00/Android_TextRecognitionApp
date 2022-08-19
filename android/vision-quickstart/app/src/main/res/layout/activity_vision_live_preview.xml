@@ -63,7 +63,7 @@
       android:layout_height="wrap_content"
       android:text = "Minimum Text Size"
       android:textSize="20dp"
-      android:textColor="@color/gray"
+      android:textColor="@color/white"
       android:fontFamily="@font/opensans_bold"
       app:layout_constraintLeft_toLeftOf="@+id/preview_view"
       app:layout_constraintRight_toRightOf="@+id/preview_view"
@@ -87,15 +87,15 @@
       blurkit:blk_downscaleFactor = "0.12"
       />
 
-  <LinearLayout
-      android:layout_width="wrap_content"
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toTopOf="@id/blurLayout_bottom"
       app:layout_constraintBottom_toBottomOf="@id/blurLayout_bottom"
       app:layout_constraintLeft_toLeftOf="@id/preview_view"
       app:layout_constraintRight_toRightOf="@id/preview_view"
-      app:layout_constraintHorizontal_bias="0.5"
-      tools:ignore="MissingConstraints">
+      >
     <Button
         android:id = "@+id/button_pause"
         android:layout_width="100dp"
@@ -103,15 +103,20 @@
         android:text = ""
         android:padding = "15dp"
         android:background="@color/gray"
-        android:layout_margin="15dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_feedback"
+        app:layout_constraintHorizontal_chainStyle="spread"
+       />
     <Button
         android:id = "@+id/button_feedback"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text = "Feedback"
         android:padding = "15dp"
-        android:layout_margin="15dp"
+        android:layout_marginVertical="15dp"
+        app:layout_constraintStart_toEndOf= "@id/button_pause"
+        app:layout_constraintEnd_toStartOf="@+id/button_summary"
+
         android:background="@color/gray"
         />
     <Button
@@ -120,9 +125,26 @@
         android:layout_height="wrap_content"
         android:text = "Summary"
         android:padding = "15dp"
-        android:layout_margin="15dp"
+        android:layout_marginVertical="15dp"
+        app:layout_constraintStart_toEndOf="@id/button_feedback"
+        app:layout_constraintEnd_toEndOf="parent"
+
         android:background="@color/gray"
         />
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toTopOf="@id/blurLayout_bottom"
+      app:layout_constraintBottom_toBottomOf="@id/blurLayout_bottom"
+      app:layout_constraintLeft_toLeftOf="@id/preview_view"
+      app:layout_constraintRight_toRightOf="@id/preview_view"
+      app:layout_constraintHorizontal_bias="0.5"
+      tools:ignore="MissingConstraints">
+
   </LinearLayout>
 
 

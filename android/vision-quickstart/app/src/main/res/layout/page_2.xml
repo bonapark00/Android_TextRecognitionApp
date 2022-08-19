@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +17,7 @@
         android:fontFamily="@font/opensans_bold"
         android:gravity="center"
         android:padding="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:textSize = "30dp"
         android:text="Privacy Policy"
         android:textColor="@color/gray" />
@@ -26,21 +27,84 @@
         android:contentDescription="Text Recognizer App"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-
+        android:layout_margin="10dp"
         android:background="@color/background"
         app:srcCompat="@drawable/icons8_privacy_96"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text=" "
+        android:textSize="2dp"
+        android:textColor="@color/gray"
+        android:background="@color/skyblue"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="15dp"
+        android:text="It\'s important that you understand
+what information &quot;HCS Text Recognizor&quot; collects,\n
+uses and how you can control it.\n\n
+We explain in delatail in our updated HCS Text Recognizor's Privacy Policy
+and you can review the key pointes below."
+        android:textColor="@color/gray"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="- Camera access -"
+        android:textSize="17dp"
+        android:textColor="@color/gray"
+        android:background="@color/skyblue"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="&quot;HCS Text Recognizor&quot; would like to access the camera.
+This app requires camera access to detect your hand and texts.\n
+The camera is on only when the you use the application.
+"
+        android:textColor="@color/gray"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="5dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:text="- Data Usage -"
+        android:textColor="@color/gray"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:background="@color/skyblue"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bold"
         android:gravity="center"
-        android:padding="20dp"
-        android:layout_marginTop="60dp"
-        android:text="Privacy is our priority. This app uses your runtime permissions request to store your notes."
-        android:textColor="@color/gray" />
+        android:text="&quot;HCS Text Recognizor&quot; doesn't collect
+any content you saved in the app.\n
+But it collects the data of camera status when you report the error of the application. "
+        android:textColor="@color/gray"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="5dp"
 
+        />
     <Button
         android:id="@+id/SecondPage_to_ThirdPage_Button"
         android:layout_width="wrap_content"

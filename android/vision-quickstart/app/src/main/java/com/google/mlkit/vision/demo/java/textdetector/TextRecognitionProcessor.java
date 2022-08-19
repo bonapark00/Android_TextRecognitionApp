@@ -101,6 +101,9 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
             handsResult -> {
               if (handsResult.multiHandLandmarks().isEmpty()) {
                 Log.e(TAG, "handsResult empty");
+
+
+
                 return;
               }
               int width = handsResult.inputBitmap().getWidth();
@@ -110,8 +113,6 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
               coordinate_index_tip = getIndexTipLandmark(handsResult, true);
               x_index_tip = coordinate_index_tip[0];
               y_index_tip = coordinate_index_tip[1];
-
-
             });
     hands.setErrorListener(
             (message, e) -> Log.e(TAG, "MediaPipe Hands error:" + message));

@@ -2,6 +2,7 @@ package com.google.mlkit.vision.demo.java;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,12 +20,24 @@ public final class Page3StartingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         // should be changed to going page_3 not later!
-        setContentView(R.layout.activity_vision_entry_choice);
+
+        setContentView(R.layout.page_3);
+        Button ThirdPage_to_FourthPage_Button = findViewById(R.id.button_Third_to_FourthPage);
+        ThirdPage_to_FourthPage_Button.setOnClickListener(view-> {
+            Intent intent = new Intent(getApplicationContext(), HandTestingActivity.class);
+            startActivity(intent);
+        });
+
+
+
+
+        /*
+        *
 
         TextView TextView_java_entry_point = findViewById(R.id.java_entry_point);
         TextView_java_entry_point.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ChooserActivity.class);
-            startActivity(intent);
+            startActivity( intent);
         });
 
         // let's just delete here
@@ -34,6 +47,10 @@ public final class Page3StartingActivity extends AppCompatActivity
             startActivity(intent);
 
         });
+
+
+
+        **/
 
 
 

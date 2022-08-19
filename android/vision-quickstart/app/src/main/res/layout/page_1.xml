@@ -7,31 +7,38 @@
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:background="@color/background" >
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:contentDescription="Text Recognizer App"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-
-        android:background="@color/background"
-        app:srcCompat="@drawable/logo_mlkit"
-
-        />
-
     <TextView
-
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bold"
         android:gravity="center"
         android:padding="20dp"
-        android:layout_marginTop="60dp"
-        android:text="Let's Start the setup process!"
+        android:layout_marginTop="40dp"
+        android:textSize = "35dp"
+        android:text="HCS Text Recognizor"
         android:textColor="@color/gray" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:contentDescription="Text Recognizer App"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/background"
+        app:srcCompat="@drawable/hcs_logo"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="50dp"
+        android:text="Let's Start the setup process!"
+        android:textColor="@color/gray"
+        android:background="@color/skyblue"/>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -39,7 +46,6 @@
         android:layout_height="103dp"
         android:padding="10dp"
         android:layout_marginVertical="10sp"
-
         app:srcCompat="@drawable/icons8_camera_96"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="148dp"
@@ -53,8 +59,9 @@
         android:gravity="center"
         android:text="Please provide us access to your camera, \nwhich is required for this app."
         android:textColor="@color/gray"
-
+        android:padding="10dp"
         android:layout_marginVertical="10sp"
+        android:background="@color/skyblue"
 
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="88dp"

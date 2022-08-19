@@ -15,7 +15,7 @@
         android:text="
 To ensure a very accurate text \
 marking, please make sure to follow these cerain guidelines \
-while using the app. \n\n
+before using the app. \n\n
 Let's first check if your fingers are being recognized properly.
 
 "       android:textSize="15dp"

@@ -16,13 +16,11 @@
 
 package com.google.mlkit.vision.demo.java;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -41,8 +39,6 @@ import com.google.android.gms.common.annotation.KeepName;
 import com.google.mlkit.common.model.LocalModel;
 import com.google.mlkit.vision.demo.CameraSource;
 import com.google.mlkit.vision.demo.CameraSourcePreview;
-
-import com.google.mlkit.vision.demo.VisionImageProcessor;
 
 
 import com.google.mlkit.vision.demo.GraphicOverlay;
@@ -66,18 +62,22 @@ import com.google.mlkit.vision.text.devanagari.DevanagariTextRecognizerOptions;
 import com.google.mlkit.vision.text.japanese.JapaneseTextRecognizerOptions;
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import android.app.AlertDialog;
 import io.alterac.blurkit.BlurLayout;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Calendar;
-import java.util.Date;
-import android.content.DialogInterface;
-import android.animation.ObjectAnimator;
-import android.animation.ArgbEvaluator;
+
 import android.view.animation.Animation;
 /** Live preview demo for ML Kit APIs. */
 @KeepName
@@ -115,6 +115,12 @@ public final class LivePreviewActivity extends AppCompatActivity
   private Button button_feedback, button_pause, button_summary;
   private VisionProcessorBase current_vision_processor;
   private TextRecognitionProcessor current_TextRecognition_processor;
+
+  // file IO
+  private FileOutputStream fileOut;
+  private OutputStreamWriter outputStreamWriter;
+  private FileInputStream fileIn;
+  private InputStreamReader inputStreamReader;
 
 
   private Timer tShow = new Timer();
@@ -160,14 +166,19 @@ public final class LivePreviewActivity extends AppCompatActivity
     button_pause.bringToFront();
     button_pause.setText("Pause");
     button_pause.setOnClickListener(
-            v->{
+            v->{ // Pause -> Start: make recording icon visible & stop camera
               if(button_pause.getText()=="Pause"){
                 button_pause.setText("Resume");
-                icon_record.setVisibility(View.GONE);
+                icon_record.clearAnimation();
+                icon_record.setVisibility(View.INVISIBLE);
+                onPause();  // stop camera
               }
-              else{
+              else{ // Start -> Pause
                 button_pause.setText("Pause");
+                icon_record.startAnimation(animation);
                 icon_record.setVisibility(View.VISIBLE);
+                onResume(); // resume camera
+
               }
 
             }
@@ -180,12 +191,33 @@ public final class LivePreviewActivity extends AppCompatActivity
             v -> {
               Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class );
               String current_detected_word = current_TextRecognition_processor.getCurrentDetectedWord();
-
               intent.putExtra("current_detected_word", current_detected_word);
               startActivity(intent);
             }
     );
 
+    // Summary Button
+    button_summary = findViewById(R.id.button_summary);
+    button_summary.bringToFront();
+    button_summary.setOnClickListener(
+            v -> {
+              Intent intent = new Intent(getApplicationContext(), SummaryActivity.class );
+              startActivity(intent);
+            }
+    );
+
+    // Saving Words
+    // add-write text into file
+    try {
+      fileOut = openFileOutput("mytextfile.txt", MODE_PRIVATE);
+      outputStreamWriter =new OutputStreamWriter(fileOut);
+      outputStreamWriter.write("");
+      outputStreamWriter.close();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    saveDetectedText();
 
     //----------------------------------------------------------------------------------------------
     Spinner spinner = findViewById(R.id.spinner);
@@ -446,8 +478,6 @@ public final class LivePreviewActivity extends AppCompatActivity
   protected void onPause() {
     super.onPause();
 
-
-
     preview.stop();
     blurLayout_top.pauseBlur();
     blurLayout_bottom.pauseBlur();
@@ -459,29 +489,75 @@ public final class LivePreviewActivity extends AppCompatActivity
     super.onDestroy();
     if (cameraSource != null) {
       cameraSource.release();
+      try {
+        outputStreamWriter.close();
+        inputStreamReader.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 
   //---------------------------------------------------------
-  public void abc(){
-    this.runOnUiThread(my_Function);
+  private String findCurrentDetectedWord(){
+      if(current_TextRecognition_processor != null){
+        String current_detected_word = current_TextRecognition_processor.getCurrentDetectedWord();
+        Log.i(TAG, "LIVE PREVIEW ACTIVITY: ==>> " + current_detected_word);
+        return current_detected_word;
+      }else{
+        return "";
+      }
   }
 
-  private Runnable my_Function = new Runnable() {
-    @Override
-    public void run() {
-      helpDialog.show();
-      Date d = new Date();
-      d.setSeconds(d.getSeconds()+30);
-    }
-  };
+  private void saveDetectedText(){
 
-  private void currentDetectedWord(){
-      String current_detected_word = current_TextRecognition_processor.getCurrentDetectedWord();
-      Log.i(TAG, "LIVE PREVIEW ACTIVITY: ==>> " + current_detected_word);
+      Timer timer = new Timer();
+      timer.schedule(new TimerTask() {
+        @Override
+        public void run() {
+            // find current detected word
+            String current_detected_word = findCurrentDetectedWord();
+            if(current_detected_word != null){
+              current_detected_word.replaceAll(" ", "");
+              String previous_word = "";
+              try{
+                // read word from file
+                String sCurrentline;
+                String all_words="";
+                // StringBuilder stringBuilder = new StringBuilder();
+                FileInputStream fileIn=openFileInput("mytextfile.txt");
+                InputStreamReader inputStreamReader= new InputStreamReader(fileIn);
+                BufferedReader reader = new BufferedReader(inputStreamReader);
+
+                while((sCurrentline = reader.readLine()) != null){
+                  all_words = all_words + sCurrentline + "\n" ;
+                  previous_word = sCurrentline;
+                }
+                Log.i(TAG, all_words.replaceAll("\n", "+"));
+                inputStreamReader.close();
+                Log.i(TAG, "Previous word: ==>> +" + previous_word + "+\n" +
+                        "Current word:  -->> *" + current_detected_word + "*");
+                if(!(previous_word.equalsIgnoreCase(current_detected_word)) && !(current_detected_word.equals("")) ){
+                  // write text into file
+                  FileOutputStream fileout = openFileOutput("mytextfile.txt", MODE_PRIVATE);
+                  OutputStreamWriter outputStreamWriter=new OutputStreamWriter(fileout);
+                  outputStreamWriter.write(all_words + current_detected_word + "\n");
+
+                  outputStreamWriter.close();
+                }
+              } catch (Exception e){
+                e.printStackTrace();
+              }
+            }
+
+
+
+
+        }
+      }, 0, 1000); // every second
+
+
 
   }
-
-
 
 }

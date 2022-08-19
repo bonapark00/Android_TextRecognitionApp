@@ -32,6 +32,7 @@
         android:theme="@style/Theme.AppCompat">
 
 
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -56,7 +57,7 @@
         <activity
             android:name=".java.ChooserActivity"
             android:exported="false"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".java.LivePreviewActivity"
             android:exported="false"
@@ -106,15 +107,24 @@
         <activity
             android:name=".java.FeedbackActivity"
             android:exported="false"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Page5StartingActivity"
             android:exported="false"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".java.Page4StartingActivity"
             android:exported="false"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".java.SummaryActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".java.HandTestingActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

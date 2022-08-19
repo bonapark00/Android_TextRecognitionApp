@@ -371,6 +371,7 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
   @Override
   public void stop() {
     executor.shutdown();
+
     isShutdown = true;
     resetLatencyStats();
     fpsTimer.cancel();
