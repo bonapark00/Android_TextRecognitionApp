@@ -73,7 +73,7 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
   //---------------------------------
   public Text texts;
   private String str_detected_word;
-
+  private Float height_detected_word;
   public HandsOptions handsOptions =
           HandsOptions.builder()
                   .setStaticImageMode(true)
@@ -86,7 +86,7 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
   private TextView foundWord;
 
   private Button button_feedback;
-
+  private final int height_required = 100;
   //---------------------------------
 
   public TextRecognitionProcessor(
@@ -215,6 +215,17 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
           Rect rect = element.getBoundingBox();
           float x_rect_center = rect.exactCenterX();
           float y_rect_center = rect.exactCenterY();
+          float height_rect = rect.height();
+          height_detected_word = height_rect;
+          Log.i(TAG, String.format("Height: %f", height_rect));
+          //
+          if(height_rect <= height_required){
+              // don't overlay text
+              distances = null;
+              // show "Move Closer"
+
+          }
+
 
           if (y_rect_center <= y_index_tip){ // only care about the words above the finger
             double dist = Math.pow(x_index_tip-x_rect_center, 2) + Math.pow(y_index_tip-y_rect_center, 2);
@@ -249,7 +260,11 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
 
       graphicOverlay.add(
               new TextGraphic(graphicOverlay, elem_targetWord, shouldGroupRecognizedTextInBlocks, showLanguageTag));
-
+    }
+    else{
+      // if none of text is find
+      // or text is too small
+      // overlay: Move closer
 
     }
   }
@@ -288,6 +303,7 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
     return str_detected_word;
   }
 
+  public Float getCurrentDetectedRectHeight(){return height_detected_word;}
 
 
 

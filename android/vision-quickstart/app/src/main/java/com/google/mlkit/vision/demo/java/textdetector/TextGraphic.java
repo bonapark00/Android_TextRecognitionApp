@@ -71,7 +71,6 @@ public class TextGraphic extends Graphic {
       GraphicOverlay overlay, Text.Element text, boolean shouldGroupTextInBlocks, boolean showLanguageTag) {
     super(overlay);
 
-
     //
     this.text = text;
     //
@@ -102,7 +101,6 @@ public class TextGraphic extends Graphic {
   @Override
   public void draw(Canvas canvas){
 
-
     // BONA
     // Render simple
     String sample_text = "Minimum text size";
@@ -114,15 +112,13 @@ public class TextGraphic extends Graphic {
     // Render blur
 
 
-
+    // Render target word with bounding box
     String str_text =
             showLanguageTag
                     ? String.format(
                     TEXT_WITH_LANGUAGE_TAG_FORMAT, text.getRecognizedLanguage(), text.getText())
                     : text.getText();
     drawText(str_text, new RectF(text.getBoundingBox()), TEXT_SIZE + 2 * STROKE_WIDTH, canvas);
-
-
 
   }
 

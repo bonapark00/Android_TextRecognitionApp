@@ -285,7 +285,8 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
       final GraphicOverlay graphicOverlay,
       @Nullable final Bitmap originalCameraImage,
       boolean shouldShowFps,
-      long frameStartMs) {
+      long frameStartMs)
+  {
     final long detectorStartMs = SystemClock.elapsedRealtime();
 
     return task

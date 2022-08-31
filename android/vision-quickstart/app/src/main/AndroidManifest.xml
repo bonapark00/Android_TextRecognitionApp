@@ -30,8 +30,9 @@
         android:icon="@drawable/logo_mlkit"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat">
-
-
+        <activity
+            android:name=".SettingDesignsActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -124,7 +125,6 @@
             android:name=".java.HandTestingActivity"
             android:exported="false"
             android:theme="@style/AppTheme" />
-
     </application>
 
 </manifest>

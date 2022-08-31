@@ -111,7 +111,7 @@ public final class LivePreviewActivity extends AppCompatActivity
   private BlurLayout blurLayout_top, blurLayout_bottom;
   private ImageView icon_record;
   private View layout_setting;
-  private TextView textview_minimum_text_size;
+  private TextView textview_minimum_text_size, textview_move_closer_further;
   private Button button_feedback, button_pause, button_summary;
   private VisionProcessorBase current_vision_processor;
   private TextRecognitionProcessor current_TextRecognition_processor;
@@ -218,6 +218,14 @@ public final class LivePreviewActivity extends AppCompatActivity
       e.printStackTrace();
     }
     saveDetectedText();
+
+
+    // Draw "Sample text size"
+    textview_minimum_text_size.setVisibility(View.INVISIBLE);
+
+    // "Come closer or Come further"
+    textview_move_closer_further = findViewById(R.id.move_closer_further);
+    popUpComeCloserComeFurther();
 
     //----------------------------------------------------------------------------------------------
     Spinner spinner = findViewById(R.id.spinner);
@@ -550,14 +558,32 @@ public final class LivePreviewActivity extends AppCompatActivity
               }
             }
 
-
-
-
         }
       }, 0, 1000); // every second
 
+  }
 
+  private void popUpComeCloserComeFurther(){
+    Timer timer = new Timer();
+    timer.schedule(new TimerTask() {
+      @Override
+      public void run() {
+        if(findCurrentDetectedWord() != null){
+          // find current word's height
+          Float height_detected_word = current_TextRecognition_processor.getCurrentDetectedRectHeight();
 
+          if(height_detected_word <= 100){
+            textview_move_closer_further.setText("Please move closer");
+          }
+          else if(100 < height_detected_word && height_detected_word <= 200){
+            textview_move_closer_further.setText("Great! Please continue with this distance.");
+          }
+          else{
+            textview_move_closer_further.setText("Please move further.");
+          }
+        }
+      }
+    }, 0, 1000); // every second
   }
 
 }
